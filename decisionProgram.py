@@ -6,7 +6,10 @@ class person():
     sex = ""
     job = ""
     hobbies = ()
-    location = ""
+    currentLocation = ""
+    HomeLocation = ""
+    WorkLocation = ""
+    
 
 class object():
     name = ""
