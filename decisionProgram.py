@@ -46,6 +46,12 @@ class object():
     dangers = ()
     uses = ()
 
+class myMorals():
+    pass
+
+class myGoals():
+    pass
+
 ######################################
 class myWorld ():
      
@@ -81,12 +87,16 @@ def implementActions():
     pass
 
 def shutdownGrendel():
+    #see loadWorld()
     pass
 
 def startMycroft():
+    #simple start commmand , or link to what is happeing on the mycroft computer
     pass
 
 def loadWorld():
+    #needs data structure for saved data, prossble folder w people and one with objects
+
     pass
 
 def loadOtherData():
