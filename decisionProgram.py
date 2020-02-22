@@ -1,14 +1,27 @@
 #!/usr/bin/python3
+# main grendel one AI loop, drives all higher level thinking
+# by Christopher Rehm christopherrehm@web.de
+# released under the gnu public license number 3
+# started 15 feb 2020
 
 import grendel.config as gc
 
+#######################################
 #main decision program for grendel the robot
-class person():
+class thing():
     name = ""
+    currentLocation = ""
+    mass = ""
+    dims = ()
+    living = ""
+    intellegent = ""
+    tangible = ""
+
+#######################################
+class person(thing):
     sex = ""
     job = ""
     hobbies = ()
-    currentLocation = ""
     HomeLocation = ""
     WorkLocation = ""
     importantIdeas = ()
@@ -34,11 +47,8 @@ class person():
     conversatons = ()
     commonExperiences = ()
 
-
 #####################################
-class object():
-    name = ""
-    location = ""
+class object(thng):
     function = ""
     color = ""
     size = ""
@@ -46,19 +56,56 @@ class object():
     dangers = ()
     uses = ()
 
-class myMorals():
-    pass
+######################################
+class idea(thing):
+    discription = ""
 
-class myGoals():
+######################################
+class myMorals(idea):
+    listOfMorals = ()
     pass
 
 ######################################
-class myWorld ():
-     
-    def addNew():
+class myGoals(idea):
+    listOfShortTermGoals = ()
+    listOfMedTermGoals = ()
+    listOfLongTermGoals = ()
+    pass
+
+######################################
+class aPlace(thing)
+    #size, numpy array
+    vectorFromHome = ()
+    otherVectorList = ()
+
+######################################
+class myWorld (thing):
+    peoplelist = ()
+    objectlist = ()
+    placelist = ()
+
+    def addNew(list, name):
         pass
 
     def changeLocation():
+        pass
+
+    def loadWorld():
+         #needs data structure for saved data, prossble folder w people and one with objects
+        for each in peoplelist:
+            #read from json file
+        for each in object list:
+            #read from json file
+        pass
+
+    def updateWorld():
+        pass
+
+    def saveWorld():
+        for each in peoplelist:
+            #write to json file
+        for each in object list:
+            #write to json file
         pass
 
 #######################################
@@ -72,9 +119,6 @@ def sendMsg():
     pass
 
 def processTask():
-    pass
-
-def updateWorld():
     pass
 
 def processToDo():
@@ -94,14 +138,8 @@ def startMycroft():
     #simple start commmand , or link to what is happeing on the mycroft computer
     pass
 
-def loadWorld():
-    #needs data structure for saved data, prossble folder w people and one with objects
-
-    pass
-
 def loadOtherData():
     pass
-
 
 startMycroft()
 loadWorld()
