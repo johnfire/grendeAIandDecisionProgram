@@ -4,7 +4,8 @@
 # released under the gnu public license number 3
 # started 15 feb 2020
 
-import grendel.config as gc
+import os
+import grendelconfig as gc
 
 #######################################
 #main decision program for grendel the robot
@@ -12,7 +13,7 @@ class thing():
     name = ""
     currentLocation = ""
     mass = ""
-    dims = ()
+    dims = []
     living = ""
     intellegent = ""
     tangible = ""
@@ -21,40 +22,40 @@ class thing():
 class person(thing):
     sex = ""
     job = ""
-    hobbies = ()
+    hobbies = []
     HomeLocation = ""
     WorkLocation = ""
-    importantIdeas = ()
-    importantThoughts = ()
+    importantIdeas = []
+    importantThoughts = []
     trustRating = ""
-    likes = ()
-    dislikes = ()
-    loves = ()
-    favoritePlaces = ()
-    history = ()
-    school = ()
-    degrees = ()
-    skills = ()
-    experience = ()
-    family = ()
-    friends = ()
+    likes = []
+    dislikes = []
+    loves = []
+    favoritePlaces = []
+    history = []
+    school = []
+    degrees = []
+    skills = []
+    experience = []
+    family = []
+    friends = []
     picture = ""
     height = ""
     weight = ""
     color = ""
     hairColor = ""
     eyeColor = ""
-    conversatons = ()
-    commonExperiences = ()
+    conversatons = []
+    commonExperiences = []
 
 #####################################
-class object(thng):
+class object(thing):
     function = ""
     color = ""
     size = ""
-    dims = ()
-    dangers = ()
-    uses = ()
+    dims = []
+    dangers = []
+    uses = []
 
 ######################################
 class idea(thing):
@@ -62,36 +63,36 @@ class idea(thing):
 
 ######################################
 class myMorals(idea):
-    listOfMorals = ()
+    listOfMorals = []
     pass
 
 ######################################
 class myGoals(idea):
-    listOfShortTermGoals = ()
-    listOfMedTermGoals = ()
-    listOfLongTermGoals = ()
+    listOfShortTermGoals = []
+    listOfMedTermGoals = []
+    listOfLongTermGoals = []
     pass
 
 ######################################
-class aPlace(thing)
+class aPlace(thing):
     #size, numpy array
-    vectorFromHome = ()
-    otherVectorList = ()
+    vectorFromHome = []
+    otherVectorList = []
 
-######################################    
+######################################
 class message():
     text = ""
     sender = ""
     primeRecipient = ""
-    otherRecipients = ()
+    otherRecipients = []
     piority = ""
-    files = ()
+    files = []
 
 ######################################
 class myWorld (thing):
-    peoplelist = ()
-    objectlist = ()
-    placelist = ()
+    peopleList = []
+    objectList = []
+    placeList = []
 
     def addNew(list, name):
         pass
@@ -100,24 +101,35 @@ class myWorld (thing):
         pass
 
     def loadWorld():
+        global peopleList
+        global objectList
          #needs data structure for saved data, prossble folder w people and one with objects
-        for each in peoplelist:
+        for each in peopleList:
             #read from json file
-        for each in object list:
+            pass
+        for each in objectList:
             #read from json file
-        pass
+            pass
 
     def updateWorld():
         pass
 
     def saveWorld():
-        for each in peoplelist:
+        for each in peopleList:
             #write to json file
-        for each in object list:
+            pass
+        for each in objectList:
             #write to json file
-        pass
+            pass
 
 #######################################
+needsVerbalAnswer = False
+needsProcessing = False
+needsUpdateWorld = False
+needsShutdown = False
+
+
+
 def readAnswer():
     pass
 
@@ -125,6 +137,15 @@ def makeMsg():
     pass
 
 def sendMsg():
+    pass
+
+def readMsg():
+    pass
+
+def makeAnswer():
+    pass
+
+def sendAnswer():
     pass
 
 def processTask():
@@ -151,7 +172,7 @@ def loadOtherData():
     pass
 
 startMycroft()
-loadWorld()
+#loadWorld()
 loadOtherData()
 #startConversationWindow()
 #startEye1()  #???
@@ -160,19 +181,20 @@ loadOtherData()
 while (1):
     print("in the loop")
     # check for incoming info
-    if len(os.listdir(gc.msgPathAI) ) != 0
+    if len(os.listdir(gc.msgPathAI) ) != 0:
         #getfirst message, need priority system
         readMsg() #should look at message and add to todo list
-        if needsVerbalAnswer == 1
+        if needsVerbalAnswer == 1:
             makeAnswer()
             sendAnswer()
-        if needsProcessing == 1
+        if needsProcessing == 1:
             processTask()
-        if needsUpdateWorld == 1
-            updateWorld()
-        if needsShutdown == 1
+        if needsUpdateWorld == 1:
+            myWorld.updateWorld()
+        if needsShutdown == 1:
             shutdownGrendel()
-    updateWorld() #not sure about this call
+            break
+    myWorld.updateWorld() #not sure about this call
     processToDo()
     makeDecisions()
     implementActions()
