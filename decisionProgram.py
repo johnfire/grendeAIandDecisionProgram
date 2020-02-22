@@ -78,6 +78,15 @@ class aPlace(thing)
     vectorFromHome = ()
     otherVectorList = ()
 
+######################################    
+class message():
+    text = ""
+    sender = ""
+    primeRecipient = ""
+    otherRecipients = ()
+    piority = ""
+    files = ()
+
 ######################################
 class myWorld (thing):
     peoplelist = ()
