@@ -5,6 +5,8 @@
 # started 15 feb 2020
 
 import os
+import sys
+import time
 import grendelconfig as gc
 
 #######################################
@@ -13,21 +15,28 @@ class thing():
     name = ""
     currentLocation = ""
     mass = ""
-    dims = []
     living = ""
     intellegent = ""
     tangible = ""
+    dims = []
 
 #######################################
 class person(thing):
     sex = ""
     job = ""
-    hobbies = []
+    trustRating = ""
     HomeLocation = ""
     WorkLocation = ""
+    picture = ""
+    height = ""
+    weight = ""
+    color = ""
+    hairColor = ""
+    eyeColor = ""
+    relationship2Me = ""
     importantIdeas = []
     importantThoughts = []
-    trustRating = ""
+    hobbies = []
     likes = []
     dislikes = []
     loves = []
@@ -39,17 +48,11 @@ class person(thing):
     experience = []
     family = []
     friends = []
-    picture = ""
-    height = ""
-    weight = ""
-    color = ""
-    hairColor = ""
-    eyeColor = ""
     conversatons = []
     commonExperiences = []
 
 #####################################
-class object(thing):
+class anObject(thing):
     function = ""
     color = ""
     size = ""
@@ -80,13 +83,6 @@ class aPlace(thing):
     otherVectorList = []
 
 ######################################
-class message():
-    text = ""
-    sender = ""
-    primeRecipient = ""
-    otherRecipients = []
-    piority = ""
-    files = []
 
 ######################################
 class myWorld (thing):
@@ -123,12 +119,6 @@ class myWorld (thing):
             pass
 
 #######################################
-needsVerbalAnswer = False
-needsProcessing = False
-needsUpdateWorld = False
-needsShutdown = False
-
-
 
 def readAnswer():
     pass
@@ -140,6 +130,10 @@ def sendMsg():
     pass
 
 def readMsg():
+    x =7
+    #look at message header return code from header to do next task.
+
+    return x
     pass
 
 def makeAnswer():
@@ -161,7 +155,8 @@ def implementActions():
     pass
 
 def shutdownGrendel():
-    #see loadWorld()
+    #save world()
+    sys.exit()
     pass
 
 def startMycroft():
@@ -181,21 +176,27 @@ loadOtherData()
 while (1):
     print("in the loop")
     # check for incoming info
-    if len(os.listdir(gc.msgPathAI) ) != 0:
+    newMsgs = os.listdir(gc.msgPathAI)
+    for each in newMsgs:
         #getfirst message, need priority system
-        readMsg() #should look at message and add to todo list
-        if needsVerbalAnswer == 1:
+        answer  = gc.message.read(each,"AI") #should look at message and add to todo list
+        if answer[1] == "sendVerbalAnswer":
             makeAnswer()
             sendAnswer()
-        if needsProcessing == 1:
+        if  answer[1] == "needsProcessing":
             processTask()
-        if needsUpdateWorld == 1:
+        if  answer[1] ==  "needsUpdateWorld":
             myWorld.updateWorld()
-        if needsShutdown == 1:
+        if  answer[1] == "needsShutdown":
             shutdownGrendel()
             break
     myWorld.updateWorld() #not sure about this call
     processToDo()
     makeDecisions()
     implementActions()
+    mytime = time.time()
+    print(mytime)
+    mymessage = gc.message
+    mymessage.write(mytime,"test","blahblahblah and blah", "PY", "!" , "AI","NOONE", "NONE")
+    myanswer = input("any key to continue")
     #repeat
