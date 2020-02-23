@@ -7,6 +7,7 @@
 import os
 import sys
 import time
+import json
 import grendelconfig as gc
 
 #######################################
@@ -61,6 +62,21 @@ class anObject(thing):
     uses = []
 
 ######################################
+class animal(thing):
+    family = ""
+    pass
+
+######################################
+class plant(thing):
+    family = ""
+    pass
+
+######################################
+class otherLife(thing):
+    family = ""
+    pass
+
+######################################
 class idea(thing):
     discription = ""
 
@@ -86,60 +102,104 @@ class aPlace(thing):
 
 ######################################
 class myWorld (thing):
+    currentModelTime =""
     peopleList = []
     objectList = []
     placeList = []
+    animalList = []
+    plantList = []
+    otherLifeList = []
+    currentPlace = "home"
 
-    def addNew(list, name):
-        pass
+    def addNew(theType, name):
+        if theType == "people":
+            newPerson = person(name)
+            peopleList.append(newPerson)
 
-    def changeLocation():
-        pass
+        elif theType == "object":
+            newObject = anObject(name)
+            objectList.append(newObject)
+
+        elif theType == "animal":
+            newAnimal = animal(name)
+            animalList.append(newAnimal)
+
+        elif theType == "plant":
+            newPlant = plant(name)
+            plantList.append(newPlant)
+
+        elif theType == "otherlife":
+            newOtherLife = otherLife(name)
+            otherLifeList.append(newOtherLife)
+
+        elif theType == "aplace":
+            newPlace = "name"
+            placeList.append(newPlace)
+
+    def changeLocation(self,name):
+        self.currentLocation = name
 
     def loadWorld():
         global peopleList
         global objectList
          #needs data structure for saved data, prossble folder w people and one with objects
-        for each in peopleList:
-            #read from json file
-            pass
-        for each in objectList:
-            #read from json file
-            pass
+         #read from json file
+        with open("peopleIknow", "r") as content:
+            datastuff = json.load(content)
+            peopleList.append(datastuff)
+        with open("objectsIknow", "r") as content:
+            datastuff = json.load(content)
+            objectList.append(datastuff)
+        with open("animalsIknow", "r") as content:
+            datastuff = json.load(content)
+            animalList.append(datastuff)
+        with open("plantsIknow", "r") as content:
+            datastuff = json.load(content)
+            plantList.append(datastuff)
+        with open("otherLifeIknow", "r") as content:
+            datastuff = json.load(content)
+            otherLifeList.append(datastuff)
 
     def updateWorld():
         pass
 
     def saveWorld():
+        os.chdir(gc.grendelOtherData)
         for each in peopleList:
-            #write to json file
-            pass
+            with open("peopleIknow", 'w') as f:
+                 f.write(each)
+
         for each in objectList:
-            #write to json file
-            pass
+            with open("objectsIknow", 'w') as f:
+                 f.write(each)
+
+        for each in animalList:
+            with open("animalsIknow", 'w') as f:
+                 f.write(each)
+
+        for each in plantList:
+            with open("plantsIknow", 'w') as f:
+                f.write(each)
+
+        for each in otherLifeList:
+            with open("otherlifeIknow", 'w') as f:
+             f.write(each)
+
+
+    def getinfo(self,name):
+        #ask humanabout a thing
+        pass
 
 #######################################
-
-def readAnswer():
+def analyseStatement():
     pass
 
-def makeMsg():
-    pass
-
-def sendMsg():
-    pass
-
-def readMsg():
-    x =7
-    #look at message header return code from header to do next task.
-
-    return x
-    pass
+def makeMsg(title, text, priority, reciever, otherRecievers, files):
+    mytime = time.time()
+    mymessage = gc.message
+    mymessage.write(mytime, title, text, "AI", priority, reciever, otherRecievers, files)
 
 def makeAnswer():
-    pass
-
-def sendAnswer():
     pass
 
 def processTask():
@@ -167,11 +227,13 @@ def loadOtherData():
     pass
 
 startMycroft()
-#loadWorld()
+myWorld.loadWorld()
 loadOtherData()
 #startConversationWindow()
-#startEye1()  #???
+#startEye1()  ???
 #startEye2()
+
+###########################################################
 
 while (1):
     print("in the loop")
@@ -181,22 +243,20 @@ while (1):
         #getfirst message, need priority system
         answer  = gc.message.read(each,"AI") #should look at message and add to todo list
         if answer[1] == "sendVerbalAnswer":
+            analyseStatement()
             makeAnswer()
-            sendAnswer()
         if  answer[1] == "needsProcessing":
             processTask()
         if  answer[1] ==  "needsUpdateWorld":
             myWorld.updateWorld()
         if  answer[1] == "needsShutdown":
+            myWorld.saveWorld()
             shutdownGrendel()
             break
     myWorld.updateWorld() #not sure about this call
     processToDo()
     makeDecisions()
     implementActions()
-    mytime = time.time()
-    print(mytime)
-    mymessage = gc.message
-    mymessage.write(mytime,"test","blahblahblah and blah", "PY", "!" , "AI","NOONE", "NONE")
+    makeMsg("test","blahblahblah and blah", "!" , "PY","NOONE", "NONE")
     myanswer = input("any key to continue")
     #repeat
