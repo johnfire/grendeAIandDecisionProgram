@@ -1,4 +1,4 @@
- d #!/usr/bin/python3
+#!/usr/bin/python3
 # main grendel one AI loop, drives all higher level thinking
 # by Christopher Rehm christopherrehm@web.de
 # released under the gnu public license number 3
@@ -256,10 +256,10 @@ class myWorld (thing):
 def analyseStatement():
     pass
 
-def makeMsg(title, text, primeRecipient, priority, otherRecievers, files):
-    mytime = time.time()
-    mymessage = gc.message()
-    mymessage.write(mytime, title, text, primeRecipient, priority, "AI", otherRecievers, files)
+#def makeMsg(title, text, primeRecipient, priority, otherRecievers, files):
+#    mytime = time.time()
+#    mymessage = gc.message()
+#    mymessage.write(mytime, title, text, primeRecipient, priority, "AI", otherRecievers, files)
 
 def makeAnswer():
     pass
@@ -315,30 +315,31 @@ while (run == True):
     print("in the loop")
     # check for incoming inf
     if firsttime == True:
-        makeMsg("AI startup","starting AI program","PY", "3" ,"NOONE", "NONE")
+        gc.makeMsg("AI startup","starting AI program","PY", "3" ,"NOONE", "NONE")
         firsttime = False
         gc.debugBreakPoint("AI1")
     newMsgs = os.listdir(gc.msgPathAI)
+    print(newMsgs)
     for each in newMsgs:
         #getfirst message, need priority system
         answer  = gc.message()
-        answer.read(each,"AI") #should look at message and add to todo list
-        if answer[1] == "sendVerbalAnswer":
+        print(answer)
+        if answer.title == "sendVerbalAnswer":
             analyseStatement()
             makeAnswer()
-        if  answer[1] == "needsProcessing":
+        if  answer.title == "needsProcessing":
             processTask()
-        if  answer[1] ==  "needsUpdateWorld":
+        if  answer.title ==  "needsUpdateWorld":
             myWorld.updateWorld()
-        if  answer[1] == "needsShutdown":
-            myWorld.saveWorld()
+        if  answer.title == "Shutdown":
+            #myWorld.saveWorld()
             shutdownGrendel()
             break
-        makeMsg("test","blahblahblah and blah","PY", "!" ,"NOONE", "NONE")
+        makeMsg("AI","test","blahblahblah and blah","PY", "!" ,"NOONE", "NONE")
         gc.debugBreakPoint("AI2")
         #move message to processed folder
         os.system('mv ' + gc.msgPathAI + "/" + each + ' ' + gc.msgPath + '/processedMsgs/')
-    myWorld.updateWorld() #not sure about this call
+    #myWorld.updateWorld() #not sure about this call
     processToDo()
     makeDecisions()
     implementActions()
