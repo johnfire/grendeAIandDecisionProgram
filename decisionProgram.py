@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+ d #!/usr/bin/python3
 # main grendel one AI loop, drives all higher level thinking
 # by Christopher Rehm christopherrehm@web.de
 # released under the gnu public license number 3
