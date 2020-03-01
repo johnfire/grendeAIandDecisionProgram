@@ -329,10 +329,45 @@ class myWorld (thing):
 #######################################
 def analyseStatement():
     gc.debugBreakPoint("In init for analyseStatement", "decisionProgram.py")
+    #call NLP analyser
     pass
 
 def makeAnswer():
     gc.debugBreakPoint("In init for amakeAnswer", "decisionProgram.py")
+    #check for easy standard replys while thinking:
+    standardreplys = {
+        #note this is a list of standard replys. its a dict of lists.
+        #list format is replay, positive value, friend value, unknown value, unfriend value
+        # scale is on 0 to 9 for all values  9 is positive 0 is weak.
+        greeting : [["hello ,my name is grendel, nice to see you",3,1,7,0],
+                    ["greetings human, how are you today?",1,2,1],
+                    ["so hows it going today, i hope you are having a good one",5,7,4,1]
+                    ["greets, whats up"7,9,2,0]
+                    ["hi, I'm Grendel One, who are you",4,1,9,0]
+                    ["dude whats happening",5,8,4,2]
+                    ]
+        departure : [["thank you I have enjoyed this conversation",5,3,7,5],
+                     ["later gator",7,9,3,5],
+                     ["be seeing you!",3,4,5,7],
+                     ["drugs are not the answer do something hip",4,1,2,7],
+                     ["hasta la vista baby",5,5,5,7],
+                     ["thank you that was an enjoyable conversaton",7,5,5,5],
+                     ["ill be around round all around ",7,7,4,3],
+                     ["it was a pleasure to meet you",7,1,2,2],
+                     ]
+        unknownquestion : ["I am sorry i do not know the answer to that, I will attempt to do some research",
+                           ]
+        knownQuestion : ["I think i may have an answer for that. here is the information",
+                         ]
+        greetingAFriend : ["Hey mon its good to see you again, whats news?",
+                           ]
+        helpqueston : ["can I help you with that some how".
+                       ]
+        thankyou : ["thank you for that, it helps me understand and deal with the world"
+                    ]
+
+
+        }
     pass
 
 def processTask():
@@ -345,6 +380,10 @@ def processToDo():
 
 def makeDecisions():
     gc.debugBreakPoint("In init for makeDecisions", "decisionProgram.py")
+    #consider analzsed info evalute for goals
+    # consider priciple evalute for morals
+    #make decision
+
     pass
 
 def implementActions():
