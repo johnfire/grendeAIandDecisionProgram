@@ -9,7 +9,7 @@ import sys
 import time
 # import json
 import pickle
-import grendelconfig as gc
+import grendelShares.grendelconfig as gc
 
 DEBUG = True
 
