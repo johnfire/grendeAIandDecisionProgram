@@ -304,7 +304,7 @@ def makeAnswer():
         # list format is replay, positive value, friend value,
         # unknown value, unfriend value
         # scale is on 0 to 9 for all values  9 is positive 0 is weak.
-        greeting: [["hello ,my name is grendel, nice to see you",
+        "greeting": [["hello ,my name is grendel, nice to see you",
                     3, 1, 7, 0],
                    ["greetings human, how are you today?", 1, 2, 1, 5],
                    ["so hows it going today, i hope you are having a good one",
@@ -314,7 +314,7 @@ def makeAnswer():
                    ["dude whats happening", 5, 8, 4, 2]
                    ],
 
-        departure: [["thank you I have enjoyed this conversation", 5, 3, 7, 5],
+        "departure": [["thank you I have enjoyed this conversation", 5, 3, 7, 5],
                     ["later gator", 7, 9, 3, 5],
                     ["be seeing you!", 3, 4, 5, 7],
                     ["drugs are not the answer do something hip", 4, 1, 2, 7],
@@ -324,17 +324,17 @@ def makeAnswer():
                     ["ill be around round all around ", 7, 7, 4, 3],
                     ["it was a pleasure to meet you", 7, 1, 2, 2],
                     ],
-        unknownQuestion: ["I am sorry i do not know the answer to that,"
+        "unknownQuestion": ["I am sorry i do not know the answer to that,"
                           " I will attempt to do some research"
                           ],
-        knownQuestion: ["I think i may have an answer for that."
+        "knownQuestion": ["I think i may have an answer for that."
                         " here is the information"
                         ],
-        greetingAFriend: ["Hey mon its good to see you again, whats news?"
+        "greetingAFriend": ["Hey mon its good to see you again, whats news?"
                           ],
-        helpQueston: ["can I help you with that some how"
+        "helpQueston": ["can I help you with that some how"
                       ],
-        thankYou: ["thank you for that, it helps me understand"
+        "thankYou": ["thank you for that, it helps me understand"
                    " and deal with the world"
                    ]
         }
