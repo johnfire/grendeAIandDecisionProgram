@@ -453,6 +453,7 @@ def makeAnswer():
         # list format is replay, positive value, friend value,
         # unknown value, unfriend value
         # scale is on 0 to 9 for all values  9 is positive 0 is weak.
+
         "greeting": [["hello ,my name is grendel, nice to see you", 3, 1, 7, 0],
                      ["greetings human, how are you today?", 1, 2, 1, 5],
                      ["so hows it going today, i hope you are having a good one", 5, 7, 4, 1],
@@ -483,6 +484,7 @@ def makeAnswer():
         "thankYou": ["thank you for that, it helps me understand"
                      " and deal with the world"
                      ]
+
         }
 
     # standardQuestions {
