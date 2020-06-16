@@ -583,7 +583,7 @@ def loadOtherData():
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s',
                     filename='grendel_logs_file',
-                    filemode='wyes')
+                    filemode='a')
 # Until here logs only to file: 'logs_file'
 
 # define a new Handler to log to console as well
