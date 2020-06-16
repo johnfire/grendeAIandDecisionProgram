@@ -674,4 +674,3 @@ while(RUN is True):
     processToDo()
     makeDecisions()
     implementActions()
-    # repeat
