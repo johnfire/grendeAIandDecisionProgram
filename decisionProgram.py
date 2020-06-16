@@ -14,9 +14,7 @@ import logging
 import pickle
 import grendelShares.grendelconfig as gc
 
-DEBUG1 = True
-DEBUG2 = True
-DEBUG3 = True
+LOGLEVEL = "logging.DEBUG"
 
 
 #######################################
@@ -25,7 +23,7 @@ class thing():
     """A thing in grendels world."""
 
     def __init__(self, name):
-        gc.debugBreakPoint("in init for thing ", "decisionProgram.py")
+        logging.debug('in init for thing')
         self.name = name
         self.currentLocation = ""
         self.mass = ""
@@ -43,7 +41,7 @@ class person(thing):
 
     def __init__(self, name):
         super().__init__
-        gc.debugBreakPoint("In init for person ", "decisionProgram.py")
+        logging.debug('In init for person')
         self.name = name
         self.number = ""
         self.sex = ""
@@ -96,7 +94,6 @@ class anObject(thing):
     """Make an objext in grendels world."""
 
     def __init__(self, name):
-        gc.debugBreakPoint("In init for anObject ", "decisionProgram.py")
         super().__init__
         self.name = name
         self.function = ""
@@ -125,7 +122,6 @@ class animal(thing):
     def __init__(self, name):
         super().__init__
         self.name = name
-        gc.debugBreakPoint("In init for animal ", "decisionProgram.py")
         self.family = ""
         self.color = ""
 
@@ -148,7 +144,6 @@ class plant(thing):
     def __init__(self, name):
         super().__init__
         self.name = name
-        gc.debugBreakPoint("In init for plant ", "decisionProgram.py")
         self.family = ""
         self.color = ""
 
@@ -171,7 +166,6 @@ class otherLife(thing):
     def __init__(self, name):
         super().__init__
         self.name = name
-        gc.debugBreakPoint("In init for otherLife ", "decisionProgram.py")
         self.family = ""
         self.color = ""
 
@@ -194,7 +188,6 @@ class idea(thing):
     def __init__(self, name):
         super().__init__
         self.name = name
-        gc.debugBreakPoint("In init for idea ", "decisionProgram.py")
         self.discription = ""
 
     def __str__(self):
@@ -216,7 +209,6 @@ class myMorals(idea):
     def __init__(self):
         super().__init__
         # self.name = name
-        gc.debugBreakPoint("In init for myMorals ", "decisionProgram.py")
         self.listOfMorals = [
 
 
@@ -246,7 +238,6 @@ class myGoals(idea):
     def __init__(self):
         super().__init__
         # self.name = name
-        gc.debugBreakPoint("In init for myGoals ", "decisionProgram.py")
         self.listOfShortTermGoals = []
         self.listOfMedTermGoals = []
         self.listOfLongTermGoals = []
@@ -270,7 +261,6 @@ class aPlace(thing):
     def __init__(self, name):
         super().__init__
         self.name = name
-        gc.debugBreakPoint("In init aPlace ", "decisionProgram.py")
         # size, numpy array
         self.vectorFromHome = []
         self.otherVectorList = []
@@ -296,7 +286,7 @@ class myWorld(thing):
 
     def __init__(self):
         super().__init__
-        gc.debugBreakPoint("In init for myWorld ", "decisionProgram.py")
+        logging.debug('In init for myWorld')
         self.currentModelTime = ""
         self.peopleList = []
         self.objectList = []
@@ -326,19 +316,11 @@ class myWorld(thing):
         None.
 
         """
-        print("Starting init")
-        gc.debugBreakPoint("In init for first initialisation myWorld ",
-                           "decisionProgram.py")
+        logging.debug('Starting init')
         dummy0 = person("empty person")
-        gc.debugBreakPoint(2, dummy0, "First Init")
         self.peopleList.append(dummy0)
-        gc.debugBreakPoint(2, self.peopleList[0], "First Init")
-        gc.debugBreakPoint(2, "+++++++++++++++", "First Init")
         dummy1 = anObject("blank object")
-        gc.debugBreakPoint(2, dummy1, "First Init")
         self.objectList.append(dummy1)
-        gc.debugBreakPoint(3, self.objectList[0], "First Init")
-        gc.debugBreakPoint(3, "end of object", "First Init")
         dummy2 = aPlace("empty place")
         self.placeList.append(dummy2)
         dummy3 = animal("blank animal")
@@ -364,7 +346,6 @@ class myWorld(thing):
         None.
 
         """
-        gc.debugBreakPoint("In init for myWorld.addNew ", "decisionProgram.py")
         if theType == "people":
             newPerson = person(name)
             self.peopleList.append(newPerson)
@@ -392,15 +373,11 @@ class myWorld(thing):
     ######################################
     def changeLocation(self, name):
         """Change grendels location in world model."""
-        gc.debugBreakPoint(1, "In init for myWorld.changeLocation ",
-                           "decisionProgram.py")
         self.currentLocation = name
 
     #####################################
     def updateWorld(self):
         """Update grendels model of the world."""
-        gc.debugBreakPoint(1, "In init for myWorld.updateWorld",
-                           "decisionProgram.py")
 
 ########################################
     def getinfo(self, name):
@@ -416,37 +393,19 @@ class myWorld(thing):
         None.
 
         """
-        gc.debugBreakPoint(1, "In init for getInfo", "decisionProgram.py")
         # ask humanabout a thing
         # should ask basic questions first then start filling in detals
         # based on current info
         # get name and what is it first then fill in other info as availaible
 
-# =============================================================================
-# ########################################
-# def debugPoint(level, message2Print):
-#     """Check debug statement."""
-#     if DEBUG1 is True:
-#         print(message2Print)
-#     if DEBUG2 is True:
-#         print(message2Print)
-#     if DEBUG3 is True:
-#         print(message2Print)
-#
-#
-# #######################################
-# =============================================================================
-
 
 def analyseStatement():
     """Analyze a statement in English."""
-    gc.debugBreakPoint(1, "In init for analyseStatement", "decisionProgram.py")
     # call NLP analyser
 
 
 def makeAnswer():
     """Create Answer."""
-    gc.debugBreakPoint(1, "In init for amakeAnswer", "decisionProgram.py")
     # check for easy standard replys while thinking:
     standardReplies = {
         # note this is a list of standard replys. its a dict of lists.
@@ -497,7 +456,6 @@ def processTask():
     None.
 
     """
-    gc.debugBreakPoint("In init for processTask", "decisionProgram.py")
 
 
 def processToDo():
@@ -508,7 +466,6 @@ def processToDo():
     None.
 
     """
-    gc.debugBreakPoint("In init for processToDo", "decisionProgram.py")
 
 
 def makeDecisions():
@@ -519,7 +476,6 @@ def makeDecisions():
     None.
 
     """
-    gc.debugBreakPoint("In init for makeDecisions", "decisionProgram.py")
     # consider analzsed info evalute for goals
     # consider priciple evalute for morals
     # make decision
@@ -533,7 +489,6 @@ def implementActions():
     None.
 
     """
-    gc.debugBreakPoint("In init for implementActions", "decisionProgram.py")
 
 
 def shutdownMe():
@@ -544,9 +499,10 @@ def shutdownMe():
     None.
 
     """
-    gc.debugBreakPoint("In init for shutdownGrendel", "decisionProgram.py")
-    os.chdir(gc.grendelLogData)
-    os.rename("masterlog.log", ("masterlog.log" + str(time.time())))
+    logging.info('Recieved shutdown message')
+    os.chdir(gc.grendelWorldData)
+    with open('world_data.pkl', 'wb') as output:
+        pickle.dump(grendelsWorld, output, pickle.HIGHEST_PROTOCOL)
     sys.exit(0)
 
 
@@ -558,7 +514,6 @@ def startMycroft():
     None.
 
     """
-    gc.debugBreakPoint("In init for startMycroft", "decisionProgram.py")
     # simple start commmand, or link to what is happening on the mycroft comp
 
 
@@ -570,7 +525,38 @@ def loadOtherData():
     None.
 
     """
-    gc.debugBreakPoint(1, "In init for loadOtherDatat", "decisionProgram.py")
+
+
+def worldUpdate():
+    """Call function to update world.
+
+    Returns
+    -------
+    None.
+
+    """
+    myWorld.updateworld()
+
+
+def f_default(*args, **kwargs):
+    """Execute default message when switch does not work."""
+    print("Received a message I have no idea what to do with.")
+
+
+def dpSwitcher(case):
+    """Switching function for decision program.
+
+    Returns
+    -------
+    None.
+
+    """
+    return {
+        "sendverbalAnswer": makeAnswer,
+        "needsProcessing": processTask,
+        "needsUpdateWorld": worldUpdate,
+        "shutdown": shutdownMe
+        }.get(case, f_default)
 
 ################################################################
 # initialze grendel world
@@ -579,7 +565,7 @@ def loadOtherData():
 
 
 logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    format='%(asctime)s - AIprogram - %(process)d - %(levelname)s - %(message)s',
                     filename='grendel_logs_file',
                     filemode='a')
 # Until here logs only to file: 'logs_file'
@@ -589,17 +575,21 @@ console = logging.StreamHandler()
 # optional, set the logging level
 console.setLevel(logging.INFO)
 # set a format which is the same for console use
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter('%(asctime)s - AIprogram - %(process)d - %(levelname)s - %(message)s')
 # tell the handler to use this format
 console.setFormatter(formatter)
 # add the handler to the root logger
 logging.getLogger('').addHandler(console)
 
 # Now, we can log to both ti file and console
-logging.info('Jackdaws love my big sphinx of quartz.')
+logging.info('grendel system startup')
 logging.info('Hello world')
-gc.debugBreakPoint("---------------entered startup routine-----------------",
-                   "decisionProgram.py")
+logging.debug('This is a debug message')
+logging.info('This is an info message')
+logging.warning('This is a warning message')
+logging.error('This is an error message')
+logging.critical('This is a critical message')
+
 startMycroft()
 # answer = "NO"
 answer = input("You can reset Grendel One to his inital learning state \
@@ -608,12 +598,13 @@ answer = input("You can reset Grendel One to his inital learning state \
                 of the world?")
 if answer == "yes":
     os.chdir(gc.grendelWorldData)
-    os.rename('world_data.pkl', 'world_data.pkl.old')
-    gc.debugBreakPoint(1, "Initialize world", "system start")
+    if os.path.exists('./world_data.pkl') is True:
+        os.rename('world_data.pkl', 'world_data.pkl.old')
+    logging.debug('Initializing Grendel world')
     grendelsWorld = myWorld()
     grendelsWorld.firstInit()
 else:  # do not reset, load  current data
-    gc.debugBreakPoint(1, "Loading saved world now", "system Start")
+    logging.debug('loading previous world now')
     os.chdir(gc.grendelWorldData)
     with open('world_data.pkl', 'rb') as input:
         grendelsWorld = pickle.load(input)
@@ -623,54 +614,41 @@ else:  # do not reset, load  current data
 # startEye2()
 
 ###########################################################
+counter = 0
 FIRSTTIME = True
 RUN = True
+logging.debug('entering while loop main decision program ')
 while(RUN is True):
-    msgLocation = "Main decision loop"
-    gc.debugBreakPoint("In while loop main dec program ", msgLocation)
     # check for incoming inf
+    logging.debug('starting main while loop')
     if FIRSTTIME is True:
         os.chdir(gc.msgPathPY)
         gc.makeMsg("AI", "AI startup", "starting AI program", "3",
                    "PY", "NOONE", "NONE")
         FIRSTTIME = False
-        gc.debugBreakPoint(1, "AI1", msgLocation)
     newMsgs = os.listdir(gc.msgPathAI)
-    gc.debugBreakPoint(1, "Adding the messages to list", msgLocation)
-    gc.debugBreakPoint(1, newMsgs, msgLocation)
+    logging.debug("Adding the messages to list")
     for each in newMsgs:
+        logging.debug("message name is:")
+        logging.debug(each)
         # getfirst message, need priority system
         damessage = gc.message()
         damessage.read(each, "AI")
-        gc.debugBreakPoint(1, "1111111111111111111", msgLocation)
-        gc.debugBreakPoint(1, damessage.sender, msgLocation)
-        if damessage.title == "sendVerbalAnswer":
-            analyseStatement()
-            makeAnswer()
-        if damessage.title == "needsProcessing":
-            processTask()
-        if damessage.title == "needsUpdateWorld":
-            myWorld.updateWorld()
-        if damessage.title == "shutdown":
-            gc.debugBreakPoint(1, "Recieved shutdown message", msgLocation)
-            gc.debugBreakPoint(1, "SHUTTDOWN", msgLocation)
-            os.chdir(gc.grendelWorldData)
-            with open('world_data.pkl', 'wb') as output:
-                pickle.dump(grendelsWorld, output, pickle.HIGHEST_PROTOCOL)
-            shutdownMe()
-        gc.makeMsg("AI", "test", "blahblahblah and blah", "7",
-                   "PY", "NOONE", "NONE")
-        gc.debugBreakPoint(2, "Leaving loop after updating messages processed",
-                           msgLocation)
+        dpSwitcher(damessage.title)(gc.message)
+
+        if counter % 100000 == 0:
+            gc.makeMsg("AI", "test", "blahblahblah and blah", "7",
+                       "PY", "NOONE", "NONE")
         # move message to processed folder
         os.system('mv '
-                  + gc.msgPathPY
+                  + gc.msgPathAI
                   + "/"
                   + each
                   + ' '
                   + gc.msgPath
                   + '/processedMsgs/'
                   )
+        logging.info('Leaving loop after updating messages processed')
     processToDo()
     makeDecisions()
     implementActions()
