@@ -8,7 +8,7 @@ started 15 feb 2020.
 
 import os
 import sys
-import time
+# import time
 import logging
 # import json
 import pickle
@@ -73,6 +73,7 @@ class person(thing):
         self.conversatons = []
         self.commonExperiences = []
 
+###################################################
     def __str__(self):
         """Make a string from object, for printing.
 
@@ -84,6 +85,7 @@ class person(thing):
         """
         return str(self.__class__) + ": " + str(self.__dict__)
 
+###################################################
     def changeLocation(self):
         """Change persons location."""
         pass
@@ -278,7 +280,6 @@ class aPlace(thing):
 
 
 ######################################
-######################################
 class myWorld(thing):
     """Create the general world object."""
 
@@ -399,11 +400,13 @@ class myWorld(thing):
         # get name and what is it first then fill in other info as availaible
 
 
+###################################################
 def analyseStatement():
     """Analyze a statement in English."""
     # call NLP analyser
 
 
+###################################################
 def makeAnswer():
     """Create Answer."""
     # check for easy standard replys while thinking:
@@ -448,6 +451,7 @@ def makeAnswer():
     #    }
 
 
+###################################################
 def processTask():
     """Process a Task.
 
@@ -458,6 +462,7 @@ def processTask():
     """
 
 
+###################################################
 def processToDo():
     """Do some Todo task.
 
@@ -468,6 +473,7 @@ def processToDo():
     """
 
 
+###################################################
 def makeDecisions():
     """Make a Decision.
 
@@ -481,6 +487,7 @@ def makeDecisions():
     # make decision
 
 
+###################################################
 def implementActions():
     """Implement an action.
 
@@ -491,6 +498,7 @@ def implementActions():
     """
 
 
+###################################################
 def shutdownMe():
     """Shutdown System.
 
@@ -506,6 +514,7 @@ def shutdownMe():
     sys.exit(0)
 
 
+###################################################
 def startMycroft():
     """Start Mycroft software.
 
@@ -517,6 +526,7 @@ def startMycroft():
     # simple start commmand, or link to what is happening on the mycroft comp
 
 
+###################################################
 def loadOtherData():
     """Load some other data.
 
@@ -527,6 +537,7 @@ def loadOtherData():
     """
 
 
+###################################################
 def worldUpdate():
     """Call function to update world.
 
@@ -538,11 +549,13 @@ def worldUpdate():
     myWorld.updateworld()
 
 
+###################################################
 def f_default(*args, **kwargs):
     """Execute default message when switch does not work."""
     print("Received a message I have no idea what to do with.")
 
 
+###################################################
 def dpSwitcher(case):
     """Switching function for decision program.
 
