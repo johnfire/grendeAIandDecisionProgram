@@ -8,13 +8,12 @@ started 15 feb 2020.
 
 import os
 import sys
-# import time
 import logging
-import json
+# import json
 import pickle
-import sys
 sys.path.append('../')
 import grendelShares.grendelconfig as gc
+
 
 LOGLEVEL = "logging.DEBUG"
 
@@ -586,15 +585,15 @@ logging.basicConfig(level=logging.INFO,
 # Until here logs only to file: 'logs_file'
 
 # define a new Handler to log to console as well
-console = logging.StreamHandler()
+#console = logging.StreamHandler()
 # optional, set the logging level
-console.setLevel(logging.INFO)
+#console.setLevel(logging.INFO)
 # set a format which is the same for console use
-formatter = logging.Formatter('%(asctime)s - AIprogram - %(process)d - %(levelname)s - %(message)s')
+#formatter = logging.Formatter('%(asctime)s - AIprogram - %(process)d - %(levelname)s - %(message)s')
 # tell the handler to use this format
-console.setFormatter(formatter)
+#console.setFormatter(formatter)
 # add the handler to the root logger
-logging.getLogger('').addHandler(console)
+#logging.getLogger('').addHandler(console)
 
 # Now, we can log to both ti file and console
 logging.info('grendel system startup')
@@ -606,11 +605,11 @@ logging.error('This is an error message')
 logging.critical('This is a critical message')
 
 startMycroft()
-# answer = "NO"
-answer = input("You can reset Grendel One to his inital learning state \
-                here with yes.\n If you do old data files will be saved \
-                to filename.old.\n Do you wish to start from no memory  \
-                of the world?")
+answer = "yes"
+# answer = input("You can reset Grendel One to his inital learning state \
+#                here with yes.\n If you do old data files will be saved \
+#                to filename.old.\n Do you wish to start from no memory  \
+#                of the world?")
 if answer == "yes":
     os.chdir(gc.grendelWorldData)
     if os.path.exists('./world_data.pkl') is True:
@@ -629,21 +628,23 @@ else:  # do not reset, load  current data
 # startEye2()
 
 ###########################################################
-counter = 0
+counter = 1
 FIRSTTIME = True
 RUN = True
 logging.debug('entering while loop main decision program ')
+if FIRSTTIME is True:
+    os.chdir(gc.msgPathPY)
+    gc.makeMsg("AI", "AI startup", "starting AI program", "3",
+               "PY", "NOONE", "NONE")
+    FIRSTTIME = False
 while(RUN is True):
     # check for incoming inf
     logging.debug('starting main while loop')
-    if FIRSTTIME is True:
-        os.chdir(gc.msgPathPY)
-        gc.makeMsg("AI", "AI startup", "starting AI program", "3",
-                   "PY", "NOONE", "NONE")
-        FIRSTTIME = False
+
     newMsgs = os.listdir(gc.msgPathAI)
     logging.debug("Adding the messages to list")
     for each in newMsgs:
+        logging.info('processing a message now')
         logging.debug("message name is:")
         logging.debug(each)
         # getfirst message, need priority system
@@ -651,9 +652,6 @@ while(RUN is True):
         damessage.read(each, "AI")
         dpSwitcher(damessage.title)(gc.message)
 
-        if counter % 100000 == 0:
-            gc.makeMsg("AI", "test", "blahblahblah and blah", "7",
-                       "PY", "NOONE", "NONE")
         # move message to processed folder
         os.system('mv '
                   + gc.msgPathAI
@@ -663,7 +661,14 @@ while(RUN is True):
                   + gc.msgPath
                   + '/processedMsgs/'
                   )
-        logging.info('Leaving loop after updating messages processed')
+    if counter % 10000 == 0:
+        # print(counter)
+        gc.makeMsg("AI", "test", "100000count reached", counter,
+                   "PY", "NOONE", "NONE")
+        # input("enter anything to coninue")
+    logging.info('Leaving loop')
+    counter += 1
+    # print(counter)
     processToDo()
     makeDecisions()
     implementActions()
