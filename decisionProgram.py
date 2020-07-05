@@ -10,8 +10,10 @@ import os
 import sys
 # import time
 import logging
-# import json
+import json
 import pickle
+import sys
+sys.path.append('../')
 import grendelShares.grendelconfig as gc
 
 LOGLEVEL = "logging.DEBUG"
