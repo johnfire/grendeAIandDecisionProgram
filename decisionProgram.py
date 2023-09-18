@@ -9,23 +9,26 @@ started 15 feb 2020.
 import os
 import sys
 import logging
+
 # import json
 import pickle
-sys.path.append('../')
+import time
+
+sys.path.append("../")
 import grendelShares.grendelconfig as gc
 
 
 LOGLEVEL = "logging.DEBUG"
 
 
-# git test 
+# git test
 #######################################
 # main decision program for grendel the robot
-class thing():
+class thing:
     """A thing in grendels world."""
 
     def __init__(self, name):
-        logging.debug('in init for thing')
+        logging.debug("in init for thing")
         self.name = name
         self.currentLocation = ""
         self.mass = ""
@@ -43,7 +46,7 @@ class person(thing):
 
     def __init__(self, name):
         super().__init__
-        logging.debug('In init for person')
+        logging.debug("In init for person")
         self.name = name
         self.number = ""
         self.sex = ""
@@ -75,7 +78,7 @@ class person(thing):
         self.conversatons = []
         self.commonExperiences = []
 
-###################################################
+    ###################################################
     def __str__(self):
         """Make a string from object, for printing.
 
@@ -87,7 +90,7 @@ class person(thing):
         """
         return str(self.__class__) + ": " + str(self.__dict__)
 
-###################################################
+    ###################################################
     def changeLocation(self):
         """Change persons location."""
         pass
@@ -213,15 +216,7 @@ class myMorals(idea):
     def __init__(self):
         super().__init__
         # self.name = name
-        self.listOfMorals = [
-
-
-
-
-
-
-
-            ]
+        self.listOfMorals = []
 
     def __str__(self):
         """Make a string from object, for printing.
@@ -289,7 +284,7 @@ class myWorld(thing):
 
     def __init__(self):
         super().__init__
-        logging.debug('In init for myWorld')
+        logging.debug("In init for myWorld")
         self.currentModelTime = ""
         self.peopleList = []
         self.objectList = []
@@ -319,7 +314,7 @@ class myWorld(thing):
         None.
 
         """
-        logging.debug('Starting init')
+        logging.debug("Starting init")
         dummy0 = person("empty person")
         self.peopleList.append(dummy0)
         dummy1 = anObject("blank object")
@@ -382,7 +377,7 @@ class myWorld(thing):
     def updateWorld(self):
         """Update grendels model of the world."""
 
-########################################
+    ########################################
     def getinfo(self, name):
         """Ask questions to human.
 
@@ -417,37 +412,37 @@ def makeAnswer():
         # list format is replay, positive value, friend value,
         # unknown value, unfriend value
         # scale is on 0 to 9 for all values  9 is positive 0 is weak.
-        "greeting": [["hello ,my name is grendel, nice to see you", 3, 1, 7, 0],
-                     ["greetings human, how are you today?", 1, 2, 1, 5],
-                     ["so hows it going today, i hope you are having a good one", 5, 7, 4, 1],
-                     ["greets, whats up", 7, 9, 2, 0],
-                     ["hi, I'm Grendel One, who are you", 4, 1, 9, 0],
-                     ["dude whats happening", 5, 8, 4, 2]
-                     ],
-
-        "departure": [["thank you I have enjoyed this conversation", 5, 3, 7, 5],
-                      ["later gator", 7, 9, 3, 5],
-                      ["be seeing you!", 3, 4, 5, 7],
-                      ["drugs are not the answer do something hip", 4, 1, 2, 7],
-                      ["hasta la vista baby", 5, 5, 5, 7],
-                      ["thank you that was an enjoyable conversaton", 7, 5, 5, 5],
-                      ["ill be around round all around ", 7, 7, 4, 3],
-                      ["it was a pleasure to meet you", 7, 1, 2, 2],
-                      ],
-        "unknownQuestion": ["I am sorry i do not know the answer to that,"
-                            " I will attempt to do some research"
-                            ],
-        "knownQuestion": ["I think i may have an answer for that."
-                          " here is the information"
-                          ],
-        "greetingAFriend": ["Hey mon its good to see you again, whats news?"
-                            ],
-        "helpQueston": ["can I help you with that some how"
-                        ],
-        "thankYou": ["thank you for that, it helps me understand"
-                     " and deal with the world"
-                     ]
-        }
+        "greeting": [
+            ["hello ,my name is grendel, nice to see you", 3, 1, 7, 0],
+            ["greetings human, how are you today?", 1, 2, 1, 5],
+            ["so hows it going today, i hope you are having a good one", 5, 7, 4, 1],
+            ["greets, whats up", 7, 9, 2, 0],
+            ["hi, I'm Grendel One, who are you", 4, 1, 9, 0],
+            ["dude whats happening", 5, 8, 4, 2],
+        ],
+        "departure": [
+            ["thank you I have enjoyed this conversation", 5, 3, 7, 5],
+            ["later gator", 7, 9, 3, 5],
+            ["be seeing you!", 3, 4, 5, 7],
+            ["drugs are not the answer do something hip", 4, 1, 2, 7],
+            ["hasta la vista baby", 5, 5, 5, 7],
+            ["thank you that was an enjoyable conversaton", 7, 5, 5, 5],
+            ["ill be around round all around ", 7, 7, 4, 3],
+            ["it was a pleasure to meet you", 7, 1, 2, 2],
+        ],
+        "unknownQuestion": [
+            "I am sorry i do not know the answer to that,"
+            " I will attempt to do some research"
+        ],
+        "knownQuestion": [
+            "I think i may have an answer for that." " here is the information"
+        ],
+        "greetingAFriend": ["Hey mon its good to see you again, whats news?"],
+        "helpQueston": ["can I help you with that some how"],
+        "thankYou": [
+            "thank you for that, it helps me understand" " and deal with the world"
+        ],
+    }
 
     # standardQuestions {
     #    }
@@ -509,9 +504,9 @@ def shutdownMe():
     None.
 
     """
-    logging.info('Recieved shutdown message')
+    logging.info("Recieved shutdown message")
     os.chdir(gc.grendelWorldData)
-    with open('world_data.pkl', 'wb') as output:
+    with open("world_data.pkl", "wb") as output:
         pickle.dump(grendelsWorld, output, pickle.HIGHEST_PROTOCOL)
     sys.exit(0)
 
@@ -570,8 +565,9 @@ def dpSwitcher(case):
         "sendverbalAnswer": makeAnswer,
         "needsProcessing": processTask,
         "needsUpdateWorld": worldUpdate,
-        "shutdown": shutdownMe
-        }.get(case, f_default)
+        "shutdown": shutdownMe,
+    }.get(case, f_default)
+
 
 ################################################################
 # initialze grendel world
@@ -579,31 +575,33 @@ def dpSwitcher(case):
 #####################################################################
 
 
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - AIprogram - %(process)d - %(levelname)s - %(message)s',
-                    filename='grendel_logs_file',
-                    filemode='a')
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - AIprogram - %(process)d - %(levelname)s - %(message)s",
+    filename="grendel_logs_file",
+    filemode="a",
+)
 # Until here logs only to file: 'logs_file'
 
 # define a new Handler to log to console as well
-#console = logging.StreamHandler()
+# console = logging.StreamHandler()
 # optional, set the logging level
-#console.setLevel(logging.INFO)
+# console.setLevel(logging.INFO)
 # set a format which is the same for console use
-#formatter = logging.Formatter('%(asctime)s - AIprogram - %(process)d - %(levelname)s - %(message)s')
+# formatter = logging.Formatter('%(asctime)s - AIprogram - %(process)d - %(levelname)s - %(message)s')
 # tell the handler to use this format
-#console.setFormatter(formatter)
+# console.setFormatter(formatter)
 # add the handler to the root logger
-#logging.getLogger('').addHandler(console)
+# logging.getLogger('').addHandler(console)
 
 # Now, we can log to both ti file and console
-logging.info('grendel system startup')
-logging.info('Hello world')
-logging.debug('This is a debug message')
-logging.info('This is an info message')
-logging.warning('This is a warning message')
-logging.error('This is an error message')
-logging.critical('This is a critical message')
+logging.info("grendel system startup")
+logging.info("Hello world")
+logging.debug("This is a debug message")
+logging.info("This is an info message")
+logging.warning("This is a warning message")
+logging.error("This is an error message")
+logging.critical("This is a critical message")
 
 startMycroft()
 answer = "yes"
@@ -613,15 +611,15 @@ answer = "yes"
 #                of the world?")
 if answer == "yes":
     os.chdir(gc.grendelWorldData)
-    if os.path.exists('./world_data.pkl') is True:
-        os.rename('world_data.pkl', 'world_data.pkl.old')
-    logging.debug('Initializing Grendel world')
+    if os.path.exists("./world_data.pkl") is True:
+        os.rename("world_data.pkl", "world_data.pkl.old")
+    logging.debug("Initializing Grendel world")
     grendelsWorld = myWorld()
     grendelsWorld.firstInit()
 else:  # do not reset, load  current data
-    logging.debug('loading previous world now')
+    logging.debug("loading previous world now")
     os.chdir(gc.grendelWorldData)
-    with open('world_data.pkl', 'rb') as input:
+    with open("world_data.pkl", "rb") as input:
         grendelsWorld = pickle.load(input)
 # loadOtherData()
 # startConversationWindow()
@@ -632,20 +630,20 @@ else:  # do not reset, load  current data
 counter = 1
 FIRSTTIME = True
 RUN = True
-logging.debug('entering while loop main decision program ')
+logging.debug("entering while loop main decision program ")
 if FIRSTTIME is True:
     os.chdir(gc.msgPathPY)
-    gc.makeMsg("AI", "AI startup", "starting AI program", "3",
-               "PY", "NOONE", "NONE")
+    gc.makeMsg("AI", "AI startup", "starting AI program", "3", "PY", "NOONE", "NONE")
     FIRSTTIME = False
-while(RUN is True):
+while RUN is True:
+    time.sleep(gc.SLEEP_TIME_FOR_DEBUGGING)
     # check for incoming inf
-    logging.debug('starting main while loop')
+    logging.debug("starting main while loop")
 
     newMsgs = os.listdir(gc.msgPathAI)
     logging.debug("Adding the messages to list")
     for each in newMsgs:
-        logging.info('processing a message now')
+        logging.info("processing a message now")
         logging.debug("message name is:")
         logging.debug(each)
         # getfirst message, need priority system
@@ -654,20 +652,14 @@ while(RUN is True):
         dpSwitcher(damessage.title)(gc.message)
 
         # move message to processed folder
-        os.system('mv '
-                  + gc.msgPathAI
-                  + "/"
-                  + each
-                  + ' '
-                  + gc.msgPath
-                  + '/processedMsgs/'
-                  )
+        os.system(
+            "mv " + gc.msgPathAI + "/" + each + " " + gc.msgPath + "/processedMsgs/"
+        )
     if counter % 10000 == 0:
         # print(counter)
-        gc.makeMsg("AI", "test", "100000count reached", counter,
-                   "PY", "NOONE", "NONE")
+        gc.makeMsg("AI", "test", "100000count reached", counter, "PY", "NOONE", "NONE")
         # input("enter anything to coninue")
-    logging.info('Leaving loop')
+    logging.info("Leaving loop")
     counter += 1
     # print(counter)
     processToDo()
