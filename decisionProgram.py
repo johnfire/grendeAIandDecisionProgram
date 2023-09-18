@@ -510,9 +510,9 @@ def shutdownMe():
 
     """
     logging.info('Recieved shutdown message')
-    os.chdir(gc.grendelWorldData)
-    with open('world_data.pkl', 'wb') as output:
-        pickle.dump(grendelsWorld, output, pickle.HIGHEST_PROTOCOL)
+    #os.chdir(gc.grendelWorldData)
+    #with open('world_data.pkl', 'wb') as output:
+    #    pickle.dump(grendelsWorld, output, pickle.HIGHEST_PROTOCOL)
     sys.exit(0)
 
 
@@ -606,7 +606,7 @@ logging.error('This is an error message')
 logging.critical('This is a critical message')
 
 startMycroft()
-answer = "yes"
+answer = "no"
 # answer = input("You can reset Grendel One to his inital learning state \
 #                here with yes.\n If you do old data files will be saved \
 #                to filename.old.\n Do you wish to start from no memory  \
@@ -620,9 +620,9 @@ if answer == "yes":
     grendelsWorld.firstInit()
 else:  # do not reset, load  current data
     logging.debug('loading previous world now')
-    os.chdir(gc.grendelWorldData)
-    with open('world_data.pkl', 'rb') as input:
-        grendelsWorld = pickle.load(input)
+    #os.chdir(gc.grendelWorldData)
+    #with open('world_data.pkl', 'rb') as input:
+    #    grendelsWorld = pickle.load(input)
 # loadOtherData()
 # startConversationWindow()
 # startEye1()
