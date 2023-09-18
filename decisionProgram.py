@@ -18,6 +18,7 @@ import grendelShares.grendelconfig as gc
 LOGLEVEL = "logging.DEBUG"
 
 
+# git test 
 #######################################
 # main decision program for grendel the robot
 class thing():
