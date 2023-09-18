@@ -636,6 +636,7 @@ if FIRSTTIME is True:
     gc.makeMsg("AI", "AI startup", "starting AI program", "3", "PY", "NOONE", "NONE")
     FIRSTTIME = False
 while RUN is True:
+    print("entering main dp program look ")
     time.sleep(gc.SLEEP_TIME_FOR_DEBUGGING)
     # check for incoming inf
     logging.debug("starting main while loop")
